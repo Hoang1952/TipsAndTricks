@@ -1,12 +1,36 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TatBlog.Core.Entities;
 
 namespace TatBlog.Data.Mappings
 {
-    internal class CategoryMap
+    public class CategoryMap : IEntityTypeConfiguration<Category>
     {
+        public void Configure(EntityTypeBuilder<Category> builder)
+        {
+            builder.ToTable("Category");
+            builder.HasKey(p => p.Id);
+
+            builder.Property(p => p.Name)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(p => p.Description)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(p => p.UrlSlug)
+                .HasMaxLength(50)
+                .IsRequired();
+
+            builder.Property(p => p.ShowOnMenu)
+                .IsRequired()
+                .HasDefaultValue(false);
+        }
     }
 }
