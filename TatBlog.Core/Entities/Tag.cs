@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TatBlog.Core.Entities
 {
-    internal class Tag
+    public class Tag
     {
         //Ma tu khoa
         public int Id { get; set; }

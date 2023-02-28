@@ -24,5 +24,36 @@ namespace TatBlog.Core.Entities
         public string Meta { get; set; }
 
         // Ten dinh dang de tao URL
+        public string UrlSlug { get; set; }
+
+        //Duong dan den tap tin hinh anh
+        public string ImageUrl { get; set; }
+
+        //So luot xem, doc bai viet
+        public int ViewCount { get; set; }
+
+        //Trang thai bai viet
+        public bool Published { get; set; }
+
+        //Ngay gio dang bai
+        public DateTime PostedDate { get; set; }
+
+        //Ngay gio cap nhat lan cuoi
+        public DateTime? ModifiedDate { get; set; }
+
+        //Ma chuyen muc
+        public int CategoryId { get; set; }
+
+        //Ma tac gia cua bai viet
+        public int AuthorId { get; set; }
+
+        //Chuyen muc cua bai viet
+        public Category Category { get; set; }
+
+        //Tac gia cua bai viet
+        public Author Author { get; set; }
+
+        //Danh sach cac tu khoa cua bai viet
+        public IList<Tag> Tags { get; set; }
     }
 }
