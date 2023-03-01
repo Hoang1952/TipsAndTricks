@@ -1,10 +1,14 @@
 ﻿using TatBlog.Core.Entities;
 using TatBlog.Data.Contexts;
 using TatBlog.Data.Seeders;
+using TatBlog.Services.Blogs;
 
 //Tao doi tuong  dbContext de quan ly phien lam viec
 // voi CSDL va trang thai cua cac doi tuong
 var context = new BlogDbContext();
+
+//Tao doi tuong BlogRepository
+IBlogRepository blogRepo = new BlogRepository(context);
 
 //Tao doi tuong khoi tao du lieu mau
 var seeder = new DataSeeder(context);
@@ -23,10 +27,10 @@ var posts = context.Posts
     {
         Id = p.Id,
         Title = p.Title,
-        ViewCount  = p.ViewCount,
+        ViewCount = p.ViewCount,
         PostedDate = p.PostedDate,
-        Author= p.Author.FullName,
-        Category= p.Category.Name,
+        Author = p.Author.FullName,
+        Category = p.Category.Name,
     })
     .ToList();
 
@@ -40,8 +44,11 @@ foreach (var author in authors)
         author.Id, author.FullName, author.Email, author.JoinedDate);
 }
 
-//Xuat danh sach bai viet ra man hinh
-foreach(var post in posts)
+//Tim 3 bai viet duoc xem/ doc nhieu nhat
+//var posts = await blogRepo.GetPopularArticlesAsync(3);
+
+//Xuat danh sach bai viet ra man hinh 
+foreach (var post in posts)
 {
     Console.WriteLine("ID         :{0}", post.Id);
     Console.WriteLine("Title      :{0}", post.Title);
