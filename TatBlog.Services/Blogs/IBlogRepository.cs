@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TatBlog.Core.Contracts;
 using TatBlog.Core.DTO;
 using TatBlog.Core.Entities;
 
@@ -39,5 +40,11 @@ namespace TatBlog.Services.Blogs
             bool showOnMenu = false,
             CancellationToken cancellationToken = default);
         Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu);
+
+        //Lay danh sach tu khoa/ the va phan trang theo cac tham so pagingParams
+        Task<IPagedList<TagItem>> GetPagedTagsAsync(
+            IPagingParams pagingParams,
+            CancellationToken cancellationToken = default
+            );
     }
 }
