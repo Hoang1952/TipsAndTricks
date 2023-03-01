@@ -11,4 +11,11 @@
     <ProjectReference Include="..\TatBlog.Data\TatBlog.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Blogs\" />
+    <Folder Include="Media\" />
+    <Folder Include="Extensions\" />
+    <Folder Include="Rss\" />
+  </ItemGroup>
+
 </Project>
