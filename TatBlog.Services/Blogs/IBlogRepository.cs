@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TatBlog.Core.DTO;
 using TatBlog.Core.Entities;
 
 namespace TatBlog.Services.Blogs
@@ -31,5 +32,12 @@ namespace TatBlog.Services.Blogs
         Task IncreaseViewCountAsync(
             int postId,
             CancellationToken cancellationToken = default);
+
+        //Lay danh sach chuyen muc va so luong bai viet
+        // nam thuoc tung chuyen muc/ chu de
+        Task<IList<CategoryItem>> GetCategoriesAsync(
+            bool showOnMenu = false,
+            CancellationToken cancellationToken = default);
+        Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu);
     }
 }

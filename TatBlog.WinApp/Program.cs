@@ -9,6 +9,17 @@ var context = new BlogDbContext();
 
 //Tao doi tuong BlogRepository
 IBlogRepository blogRepo = new BlogRepository(context);
+//Lay danh sach chuyen muc
+var categories = await blogRepo.GetCategoriesAsync();
+//Xuat ra man hinh
+Console.WriteLine("{0,-5}{1,-50}{2,10}",
+    "ID", "Name", "Count");
+
+foreach(var item in categories)
+{
+    Console.WriteLine("{0,-5}{1,-50}{2,10}",
+        item.Id, item.Name, item.PostCount);
+}
 
 //Tao doi tuong khoi tao du lieu mau
 var seeder = new DataSeeder(context);
@@ -58,3 +69,5 @@ foreach (var post in posts)
     Console.WriteLine("Category   :{0}", post.Category);
     Console.WriteLine("".PadRight(80, '-'));
 }
+
+
