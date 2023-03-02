@@ -135,5 +135,36 @@ namespace TatBlog.Services.Blogs
 
             return await tagQuery.ToPagedListAsync(pagingParams, cancellationToken);
         }
+
+        //C.Bai tap thuc hanh
+        //a. Tìm một thẻ (Tag) theo tên định danh (slug) 
+        public Task<Tag> FindTagBySlugAsync(
+            string slug, CancellationToken cancellation = default)
+        {
+            return _context.Set<Tag>()
+                .Where(x => x.UrlSlug == slug)
+                .FirstOrDefaultAsync(cancellation);
+        }
+
+        //b. Tạo lớp DTO có tên là TagItem để chứa các thông tin về thẻ và số lượng
+        //bài viết chứa thẻ đó.
+        //public async Task<IList<TagItem>> GetTagsAsync(CancellationToken cancellationToken = default)
+        //{
+        //    var tagQuery = _context.Set<Tag>()
+        //        .Select(x => new TagItem()
+        //        {
+        //            Id = x.Id,
+        //            Name = x.Name,
+        //            UrlSlug = x.UrlSlug,
+        //            Description = x.Description,
+        //            PostCount = x.Posts.Count(p => p.Published)
+        //        });
+
+        //    return await tagQuery.ToListAsync(cancellationToken);
+        //}
+
+        //c.Lấy danh sách tất cả các thẻ(Tag) kèm theo số bài viết chứa thẻ đó.Kết
+        //quả trả về kiểu IList<TagItem>.
+
     }
 }

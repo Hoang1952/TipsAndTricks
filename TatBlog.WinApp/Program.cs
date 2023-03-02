@@ -73,23 +73,45 @@ IBlogRepository blogRepo = new BlogRepository(context);
 //}
 
 //Tao doi tuong chua tham so phan trang
-var pagingParams = new PagingParams
-{
-    PageNumber = 1,              //Lay ket qua o trang so 1
-    PageSize = 5,                //Lay 5 mau tin
-    SortColumn = "Name",        //Sap xep theo ten
-    SortOrder = "DESC"          //Theo chieu giam dan
-};
+//var pagingParams = new PagingParams
+//{
+//    PageNumber = 1,              //Lay ket qua o trang so 1
+//    PageSize = 5,                //Lay 5 mau tin
+//    SortColumn = "Name",        //Sap xep theo ten
+//    SortOrder = "DESC"          //Theo chieu giam dan
+//};
 
-//Lay danh sach tu khoa
-var tagsList = await blogRepo.GetPagedTagsAsync(pagingParams);
+////Lay danh sach tu khoa
+//var tagsList = await blogRepo.GetPagedTagsAsync(pagingParams);
 
-//Xuat ra man hinh
+////Xuat ra man hinh
+//Console.WriteLine("{0,-5}{1,-50}{2,10}",
+//    "ID", "Name", "Count");
+
+//foreach (var item in tagsList)
+//{
+//    Console.WriteLine("{0,-5}{1,-50}{2,10}",
+//        item.Id, item.Name, item.PostCount);
+//}
+
+//C. BÀI TẬP THỰC HÀNH
+//a. Tìm một thẻ (Tag) theo tên định danh (slug) 
+var TagSlug = await blogRepo.FindTagBySlugAsync("Razor Page");
 Console.WriteLine("{0,-5}{1,-50}{2,10}",
-    "ID", "Name", "Count");
+     TagSlug.Id, TagSlug.Name, TagSlug.UrlSlug);
 
-foreach (var item in tagsList)
-{
-    Console.WriteLine("{0,-5}{1,-50}{2,10}",
-        item.Id, item.Name, item.PostCount);
-}
+
+//b. Tạo lớp DTO có tên là TagItem để chứa các thông tin về thẻ và số lượng
+//bài viết chứa thẻ đó. 
+//var TagList = await blogRepo.GetTagsAsync();
+//Console.WriteLine("{0,-5}{1,-50}{2,10}",
+//    "ID", "Name", "Count");
+
+//foreach (var item in TagList)
+//{
+//    Console.WriteLine("{0,-5}{1,-50}{2,10}",
+//        item.Id, item.Name, item.PostCount);
+//}
+
+//c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
+//quả trả về kiểu IList<TagItem>.

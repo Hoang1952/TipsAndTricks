@@ -46,5 +46,18 @@ namespace TatBlog.Services.Blogs
             IPagingParams pagingParams,
             CancellationToken cancellationToken = default
             );
+
+        //C. BÀI TẬP THỰC HÀNH
+        //a. Tìm một thẻ (Tag) theo tên định danh (slug) 
+        Task<Tag> FindTagBySlugAsync(
+            string slug, CancellationToken cancellationToken = default);
+
+        //b. Tạo lớp DTO có tên là TagItem để chứa các thông tin về thẻ và số lượng
+        //bài viết chứa thẻ đó.
+        //Task<IList<TagItem>> GetTagsAsync( CancellationToken cancellationToken = default);
+
+        //c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
+        //quả trả về kiểu IList<TagItem>.
+
     }
 }

@@ -92,6 +92,11 @@ public class DataSeeder : IDataSeeder
             new() {Name = "Blazor", Description = "Blazor is a free and open-source web framework", UrlSlug = "blazor"},
             new() {Name = "Deep Learning", Description = "Deep learning is a subset of machine learning", UrlSlug = "deep learning"},
             new() {Name = "Neural Network", Description = "A neural network is a method in artificial intelligence", UrlSlug = "neural network"},
+            new() {Name = "Visual Studio Code", Description = "a source-code editor that can be used with a variety of programming languages", UrlSlug = "visual studido code"},
+            new() {Name = "Microsoft", Description = "Microsoft is the largest vendor of computer software in the world", UrlSlug = "microsoft"},
+            new() {Name = "Github", Description = "GitHub is a code hosting platform for version control and collaboration", UrlSlug = "github"},
+            new() {Name = "SQL Server", Description = "Microsoft SQL Server is a relational database management system (RDBMS) ", UrlSlug = "sql server"},
+
         };
         _dbContext.AddRange(tags);
         _dbContext.SaveChanges();
