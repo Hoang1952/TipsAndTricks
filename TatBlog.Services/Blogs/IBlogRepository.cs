@@ -58,12 +58,15 @@ namespace TatBlog.Services.Blogs
 
         //c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
         //quả trả về kiểu IList<TagItem>.
-        //Task<IList<TagItem>> FindTagItemSlugAsync(CancellationToken cancellationToken = default)
+        //Task<IList<TagItem>> FindTagItemSlugAsync(CancellationToken cancellationToken = default);
 
         // g. Thêm hoặc cập nhật một chuyên mục/chủ đề. 
-        Task<bool> AddOrUpdateCategoryAsync(Category newCategory, CancellationToken cancellationToken = default);
+        //Task<bool> AddOrUpdateCategory(Category newCategory, CancellationToken cancellationToken = default);
 
         //// h. Xóa một chuyên mục theo mã số cho trước
         //Task<bool> DeleteCategoryByIdAsync(int id, CancellationToken cancellationToken = default);
+
+        //d. Xóa một thẻ theo mã cho trước. 
+        Task<bool> DeleteTagByIdAsync(int id, CancellationToken cancellationToken = default);
     }
 }

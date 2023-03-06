@@ -113,11 +113,11 @@ IBlogRepository blogRepo = new BlogRepository(context);
 //        item.Id, item.Name, item.PostCount);
 //}
 
-//c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
+//c.Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
 //quả trả về kiểu IList<TagItem>.
 //var tags = await blogRepo.FindTagItemSlugAsync();
 //Console.WriteLine("{0,-5}{1,-50}{2,-20}", "ID", "Name", "Post Count");
-//foreach(var tag in tags)
+//foreach (var tag in tags)
 //{
 //    Console.WriteLine("{0,-5}{1,-50}{2,-20}", tag.Id, tag.Name, tag.PostCount);
 //}
@@ -126,12 +126,16 @@ IBlogRepository blogRepo = new BlogRepository(context);
 IBlogRepository repository = new BlogRepository(context);
 
 //g. Thêm hoặc cập nhật một chuyên mục/chủ đề
-var isAdd = await blogRepo.AddOrUpdateCategoryAsync(new TatBlog.Core.Entities.Category()
-{
-    Name = "Toeic",
-    Description = " Test of English for International Communication",
-    UrlSlug = "toeic_learning",
-    ShowOnMenu = true
-});
+//var isAdd = await blogRepo.AddOrUpdateCategory(new TatBlog.Core.Entities.Category()
+//{
+//    Name = "Toeic",
+//    Description = " Test of English for International Communication",
+//    UrlSlug = "toeic_learning",
+//    ShowOnMenu = true
+//});
 
-Console.WriteLine(isAdd ? "True" : "False");
+//Console.WriteLine(isAdd ? "True" : "False");
+
+//d. Xóa một thẻ theo mã cho trước. 
+var isDelete = await blogRepo.DeleteTagByIdAsync(1);
+Console.WriteLine(isDelete ? "True" : "False");

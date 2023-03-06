@@ -86,6 +86,14 @@ namespace TatBlog.Services.Blogs
                 cancellationToken);
         }
 
+        public Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu)
+        {
+            throw new NotImplementedException();
+        }
+        public Task<IPagedList<TagItem>> GetPagedTagsAsync(IPagingParams pagingParams, CancellationToken cancellationToken = default)
+        {
+            throw new NotImplementedException();
+        }
         //Lay danh sach chuyen muc va so luong bai viet
         // nam thuoc tung chuyen muc/ chu de
         public async Task<IList<CategoryItem>> GetCategoriesAsync(
@@ -97,7 +105,7 @@ namespace TatBlog.Services.Blogs
             if (showOnMenu)
             {
                 categories = categories.Where(x => x.ShowOnMenu);
-            }   
+            }
 
             return await categories
                 .OrderBy(x => x.Name)
@@ -113,29 +121,27 @@ namespace TatBlog.Services.Blogs
                 .ToListAsync(cancellationToken);
         }
 
-        public Task<IList<CategoryItem>> GetCategoriesAsync(bool showOnMenu)
-        {
-            throw new NotImplementedException();
-        }
+
 
         //Lay danh sach tu khoa/ the va phan trang theo cac tham so pagingParams
-        //public async Task<IPagedList<TagItem>> GetPagedTagsAsync(
-        //    IPagingParams pagingParams,
-        //    CancellationToken cancellationToken = default
-        //    );
-        //{
-        //    var tagQuery = _context.Set<Tag>()
-        //        .Select(x => new TagItem()
-        //        {
-        //            Id = x.Id,
-        //            Name = x.Name,
-        //            UrlSlug = x.UrlSlug,
-        //            Description = x.Description,
-        //            PostCount = x.Posts.Count(p => p.Published)
-        //        });
-
-        //    return await tagQuery.ToPagedListAsync(pagingParams, cancellationToken);
+        //    public async Task<IPagedList<TagItem>> GetPagedTagsAsync(
+        //        IPagingParams pagingParams,
+        //        CancellationToken cancellationToken = default)
+        //    {
+        //        var tagQuery = _context.Set<Tag>()
+        //            .Select(x => new TagItem()
+        //            {
+        //                Id = x.Id,
+        //                Name = x.Name,
+        //                UrlSlug = x.UrlSlug,
+        //                Description = x.Description,
+        //                PostCount = x.Posts.Count(p => p.Published)
+        //            });
+        //        return await tagQuery
+        //        .ToPagedListAsync(pagingParams, cancellationToken);
+        //    }
         //}
+
 
         //C. BÀI TẬP THỰC HÀNH
         //a. Tìm một thẻ (Tag) theo tên định danh (slug) 
@@ -181,19 +187,24 @@ namespace TatBlog.Services.Blogs
         //}
 
         //g.Thêm hoặc cập nhật một chuyên mục/chủ đề.
-        public async Task<bool> AddOrUpdateCategoryAsync(Category newCategory, CancellationToken cancellationToken)
-        {
-            _context.Set<Category>()
-                .Entry(newCategory).State = newCategory.Id == 0
-                ? EntityState.Added
-                : EntityState.Modified;
-            _context.SaveChanges();
-            return true;
-        }
 
-        public Task<IPagedList<TagItem>> GetPagedTagsAsync(IPagingParams pagingParams, CancellationToken cancellationToken = default)
+
+        //public async Task<bool> AddOrUpdateCategory(Category newCategory, CancellationToken cancellationToken)
+        //{
+        //    _context.Set<Category>()
+        //        .Entry(newCategory).State = newCategory.Id == 0
+        //        ? EntityState.Added
+        //        : EntityState.Modified;
+        //    _context.SaveChanges();
+        //    return true;
+        //}
+
+        //d. Xóa một thẻ theo mã cho trước. 
+        public async Task<bool> DeleteTagByIdAsync(int id, CancellationToken cancellation = default)
         {
-            throw new NotImplementedException();
+            return await _context.Set<Tag>()
+                .Where(x => x.Id == id)
+                .ExecuteDeleteAsync(cancellation) > 0;
         }
     }
 }
