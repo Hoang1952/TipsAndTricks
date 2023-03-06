@@ -13,7 +13,7 @@ IBlogRepository blogRepo = new BlogRepository(context);
 
 //Lay danh sach chuyen muc
 //var categories = await blogRepo.GetCategoriesAsync();
-////Xuat ra man hinh
+//////Xuat ra man hinh
 //Console.WriteLine("{0,-5}{1,-50}{2,10}",
 //    "ID", "Name", "Count");
 
@@ -95,10 +95,10 @@ IBlogRepository blogRepo = new BlogRepository(context);
 //}
 
 //C. BÀI TẬP THỰC HÀNH
-//a. Tìm một thẻ (Tag) theo tên định danh (slug) 
-var TagSlug = await blogRepo.FindTagBySlugAsync("Razor Page");
-Console.WriteLine("{0,-5}{1,-50}{2,10}",
-     TagSlug.Id, TagSlug.Name, TagSlug.UrlSlug);
+////a.Tìm một thẻ (Tag) theo tên định danh (slug) 
+//var TagSlug = await blogRepo.FindTagBySlugAsync("Razor Page");
+//Console.WriteLine("{0,-5}{1,-50}{2,10}",
+//     TagSlug.Id, TagSlug.Name, TagSlug.UrlSlug);
 
 
 //b. Tạo lớp DTO có tên là TagItem để chứa các thông tin về thẻ và số lượng
@@ -115,3 +115,23 @@ Console.WriteLine("{0,-5}{1,-50}{2,10}",
 
 //c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
 //quả trả về kiểu IList<TagItem>.
+//var tags = await blogRepo.FindTagItemSlugAsync();
+//Console.WriteLine("{0,-5}{1,-50}{2,-20}", "ID", "Name", "Post Count");
+//foreach(var tag in tags)
+//{
+//    Console.WriteLine("{0,-5}{1,-50}{2,-20}", tag.Id, tag.Name, tag.PostCount);
+//}
+
+
+IBlogRepository repository = new BlogRepository(context);
+
+//g. Thêm hoặc cập nhật một chuyên mục/chủ đề
+var isAdd = await blogRepo.AddOrUpdateCategoryAsync(new TatBlog.Core.Entities.Category()
+{
+    Name = "Toeic",
+    Description = " Test of English for International Communication",
+    UrlSlug = "toeic_learning",
+    ShowOnMenu = true
+});
+
+Console.WriteLine(isAdd ? "True" : "False");

@@ -48,9 +48,9 @@ namespace TatBlog.Services.Blogs
             );
 
         //C. BÀI TẬP THỰC HÀNH
-        //a. Tìm một thẻ (Tag) theo tên định danh (slug) 
-        Task<Tag> FindTagBySlugAsync(
-            string slug, CancellationToken cancellationToken = default);
+        //a.Tìm một thẻ(Tag) theo tên định danh(slug)
+        //Task<Tag> FindTagBySlugAsync(
+        //    string slug, CancellationToken cancellationToken = default);
 
         //b. Tạo lớp DTO có tên là TagItem để chứa các thông tin về thẻ và số lượng
         //bài viết chứa thẻ đó.
@@ -58,6 +58,12 @@ namespace TatBlog.Services.Blogs
 
         //c. Lấy danh sách tất cả các thẻ (Tag) kèm theo số bài viết chứa thẻ đó. Kết
         //quả trả về kiểu IList<TagItem>.
+        //Task<IList<TagItem>> FindTagItemSlugAsync(CancellationToken cancellationToken = default)
 
+        // g. Thêm hoặc cập nhật một chuyên mục/chủ đề. 
+        Task<bool> AddOrUpdateCategoryAsync(Category newCategory, CancellationToken cancellationToken = default);
+
+        //// h. Xóa một chuyên mục theo mã số cho trước
+        //Task<bool> DeleteCategoryByIdAsync(int id, CancellationToken cancellationToken = default);
     }
 }
